@@ -16,7 +16,9 @@ type WeatherData = {
     }[];
 };
 function Page() {
-    const [weatherData, setWeatherData] = useState(null);
+    const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
     const {
         register,
         handleSubmit,
@@ -41,6 +43,17 @@ function Page() {
                 ></input>
                 <input type="submit" name="Buscar"></input>
             </form>
+            {weatherData && (
+                <>
+                    <p>Nome da cidade: {weatherData.name}</p>
+                    <p>Temperatura: {weatherData.main.temp}°C</p>
+                    <p>Descrição: {weatherData.weather[0].description}</p>
+                    <img
+                        src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+                        alt="Ícone do clima"
+                    />
+                </>
+            )}
         </div>
     );
 }
