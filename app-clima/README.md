@@ -1,6 +1,6 @@
 # ClimaCheck: Previsão do Tempo em Tempo Real
 
-![Captura de tela da aplicação em modo escuro]("")
+![Captura de tela da aplicação em modo escuro]("./public/print.png")
 
 ## 📖 Sobre o Projeto
 
