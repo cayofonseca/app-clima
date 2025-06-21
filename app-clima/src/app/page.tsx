@@ -2,6 +2,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useState } from "react";
 
+// Suas tipagens (Form, WeatherData) continuam as mesmas
 type Form = {
     cityName: string;
 };
@@ -18,6 +19,7 @@ type WeatherData = {
 };
 
 function Page() {
+    // A lógica do componente permanece idêntica
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -52,10 +54,10 @@ function Page() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center p-4">
+        <div className="min-h-screen bg-slate-900 text-slate-300 flex flex-col justify-center items-center p-4">
             <div className="w-full max-w-md">
-                <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
-                    Central do Clima
+                <h1 className="text-3xl font-bold text-slate-50 mb-6 text-center">
+                    Clima Agora
                 </h1>
 
                 <form
@@ -63,7 +65,7 @@ function Page() {
                     onSubmit={handleSubmit(onSubmit)}
                 >
                     <input
-                        className="flex-grow p-3 rounded-md border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:bg-gray-200"
+                        className="flex-grow p-3 rounded-md border border-slate-700 bg-slate-800 text-slate-50 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 disabled:bg-slate-800"
                         {...register("cityName", {
                             required: "O nome da cidade é obrigatório",
                         })}
@@ -73,7 +75,7 @@ function Page() {
                     />
                     <button
                         type="submit"
-                        className="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-indigo-700 transition-colors disabled:bg-indigo-300 disabled:cursor-not-allowed"
+                        className="bg-cyan-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-cyan-700 transition-colors disabled:bg-cyan-800 disabled:text-slate-400 disabled:cursor-not-allowed"
                         disabled={isLoading}
                     >
                         {isLoading ? "Buscando..." : "Buscar"}
@@ -82,33 +84,33 @@ function Page() {
 
                 <div className="mt-4 text-center h-6">
                     {errors.cityName && (
-                        <p className="font-medium text-yellow-600">
+                        <p className="font-medium text-yellow-500">
                             {errors.cityName.message}
                         </p>
                     )}
                     {errorMessage && (
-                        <p className="font-medium text-red-600">
+                        <p className="font-medium text-red-500">
                             {errorMessage}
                         </p>
                     )}
                 </div>
 
                 {weatherData && !isLoading && (
-                    <div className="mt-6 bg-white border border-gray-200 rounded-xl p-8 shadow-md animate-fade-in">
+                    <div className="mt-6 bg-slate-800 border border-slate-700 rounded-xl p-8 shadow-lg animate-fade-in">
                         <div className="text-center">
-                            <h2 className="text-2xl font-bold text-gray-900">
+                            <h2 className="text-2xl font-bold text-slate-50">
                                 {weatherData.name}
                             </h2>
-                            <p className="capitalize text-lg text-gray-600 mt-1">
+                            <p className="capitalize text-lg text-slate-400 mt-1">
                                 {weatherData.weather[0].description}
                             </p>
                             <div className="flex justify-center items-center gap-4 mt-6">
                                 <img
                                     src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
                                     alt="Ícone do clima"
-                                    className="w-20 h-20"
+                                    className="w-20 h-20 drop-shadow(0 0 5px #fff)"
                                 />
-                                <p className="text-5xl font-bold text-gray-800">
+                                <p className="text-5xl font-bold text-slate-50">
                                     {Math.round(weatherData.main.temp)}°C
                                 </p>
                             </div>
