@@ -8,7 +8,7 @@
 
 O projeto foi criado para explorar conceitos fundamentais e avançados do ecossistema React, com foco especial em boas práticas de segurança, componentização e gerenciamento de estado.
 
-[🔗 **Acesse a demonstração ao vivo!**](https://SEU_LINK_AQUI.vercel.app/) _(Substitua pelo link do seu deploy na Vercel)_
+
 
 ---
 
