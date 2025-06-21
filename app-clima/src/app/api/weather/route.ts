@@ -26,3 +26,5 @@ export async function GET(request: Request) {
 
     return NextResponse.json(data);
 }
+
+console.log(process.env.OPENWEATHER_API_KEY);
