@@ -26,13 +26,20 @@ function Page() {
     } = useForm<Form>();
 
     const onSubmit: SubmitHandler<Form> = async (data) => {
-        const req = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${data.cityName}&appid=5cc1bfb635c40b744d327c753ebd3e8c
-&units=metric&lang=pt_br`
-        );
-        const dataJson = await req.json();
+        setErrorMessage(null);
+        setWeatherData(null);
+
+        const response = await fetch(`/api/weather?city=${data.cityName}`);
+
+        if (!response.ok) {
+            setErrorMessage("Cidade não encontrada. Tente novamente.");
+            return;
+        }
+
+        const dataJson = await response.json();
         setWeatherData(dataJson);
     };
+
     return (
         <div>
             <h1>App de Clima</h1>
@@ -43,6 +50,8 @@ function Page() {
                 ></input>
                 <input type="submit" name="Buscar"></input>
             </form>
+            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+
             {weatherData && (
                 <>
                     <p>Nome da cidade: {weatherData.name}</p>
